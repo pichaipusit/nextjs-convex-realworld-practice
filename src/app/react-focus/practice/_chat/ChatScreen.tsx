@@ -3,6 +3,7 @@
 import { getMessages, Message } from "@/lib/fake-db";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
+import ChatBubble from "./ChatBubble";
 
 export default function ChatScreen() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -38,15 +39,7 @@ export default function ChatScreen() {
     <div className="container mx-auto">
       <ul className="space-y-2">
         {messages.map((msg) => (
-          <li
-            key={msg.id}
-            className={cn(
-              "p-2 w-fit",
-              msg.userId === "user-1" ? "bg-gray-200" : "bg-sky-200 ml-auto"
-            )}
-          >
-            {msg.text}
-          </li>
+          <ChatBubble key={msg.id} message={msg} />
         ))}
       </ul>
 
