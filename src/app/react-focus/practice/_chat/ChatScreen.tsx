@@ -8,6 +8,7 @@ import ChatBubble from "./ChatBubble";
 export default function ChatScreen() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [text, setText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const addNewMessage = () => {
     if (!text) return;
@@ -28,12 +29,20 @@ export default function ChatScreen() {
 
   useEffect(() => {
     const fetchMessages = async () => {
+      setIsLoading(true);
       const initialMessages = await getMessages();
       setMessages(initialMessages);
+      setIsLoading(false);
     };
 
     fetchMessages();
+
+    return () => {};
   }, []);
+
+  if (isLoading) {
+    return <div className="container mx-auto">...Loading</div>;
+  }
 
   return (
     <div className="container mx-auto">
