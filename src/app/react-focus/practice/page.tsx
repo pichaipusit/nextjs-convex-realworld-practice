@@ -1,5 +1,10 @@
 import React from "react";
+import ChatScreen from "./_chat/ChatScreen";
 
 export default function ReactFocusPracticePage() {
-  return <div>ReactFocusPracticePage</div>;
+  return (
+    <div>
+      <ChatScreen />
+    </div>
+  );
 }
